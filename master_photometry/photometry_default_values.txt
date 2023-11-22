@@ -1,0 +1,6 @@
+noise_range      = [4,75,325,425]
+avg_rms_channel  = 0.004738643756922702
+line_threshold   = 2
+number_channels  = 9
+vla_rms          = 1.6e-5
+vla_threshold    = 3

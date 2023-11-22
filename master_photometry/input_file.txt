@@ -1,0 +1,12 @@
+name           = 'NGC5258'
+dec            = 0+49/60+56.073/3600
+RA             = (13+39/60+57.8749/3600)*15
+hex_area       = 1.1330900354569795
+vla_image      = 'NGC5258_s_concat_uvt_dot75asec_rbeam1asec_csdot1.pbcor_hcorr.fits'
+cube_image     = 'NGC_5258_cube_1arcsec_inregion.pbcor_hcorr.fits'
+mom0_image     = 'NGC_5258_cube_1arcsec_unclipped.mom0.pbcor_inregion_hcorr.fits'
+grid_dim       = [32,48]
+mask_cube      = 'template_mask_cube.fits'
+CO_to_H2       = 4.3
+distance       = 98
+redshift       = 0.02250 
