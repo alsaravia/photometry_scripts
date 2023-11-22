@@ -65,19 +65,6 @@ if __name__ == "__main__":
     V_u        = (1-(cube_header['CRVAL3']+cube_header['CDELT3']*cube_header['NAXIS3'])/cube_header['RESTFRQ'])*2.99999e5    
     chan_width = (V_u-V_d)/cube_header['NAXIS3']                                                                              
 
-
-    ####### Further marking (Arp240 only)
-    radius = 170
-    a = """image \npolygon({},{},{},{},{},{},{},{},{},{},{},{},{},{})""".format(72,379, 72,212,228,8,452 ,8, 452,245, 215,489,121,489 )
-    region = []
-    region.append(a)
-    r = pyregion.parse(region[0])
-    envelope_mask      = r.get_mask(shape=[500, 500])
-    envelope_mask_hdu  = fits.PrimaryHDU(envelope_mask.astype('short'), base_S_header)
-    envelope_mask_data = envelope_mask_hdu.data
-    cube_data          = np.multiply(envelope_mask_data,cube_data[:,:,:])
-    base_S_data        = np.multiply(envelope_mask_data,base_S_data)
-
     print('\nExtracting fluxes...')
     radio_val = flux_extractor(mask_cube_data, base_S_data, beam_size_in_pix)
     hex_flux = flux_extractor(mask_cube_data, cube_data, beam_size_in_pix)
