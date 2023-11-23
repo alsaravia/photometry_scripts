@@ -63,7 +63,7 @@ if __name__ == "__main__":
 
     V_d        = (1-cube_header['CRVAL3']/cube_header['RESTFRQ'])*2.99999e5                                                  
     V_u        = (1-(cube_header['CRVAL3']+cube_header['CDELT3']*cube_header['NAXIS3'])/cube_header['RESTFRQ'])*2.99999e5    
-    chan_width = (V_u-V_d)/cube_header['NAXIS3']                                                                              
+    chan_width = np.abs((V_u-V_d)/cube_header['NAXIS3'])                                                                             
 
     print('\nExtracting fluxes...')
     radio_val = flux_extractor(mask_cube_data, base_S_data, beam_size_in_pix)

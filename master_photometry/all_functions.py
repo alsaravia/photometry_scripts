@@ -197,13 +197,13 @@ def individual_fitting_plot(h,thrsh,polyn,rms_avg_1,array,ax):
     else:
         last = 2*center
 
-    ydata = ydata[first:last]+1
+    ydata = ydata[first:last]
     yhat = savgol_filter(ydata, 51, polyn)
     n_hex = len(yhat)
     xdata = np.linspace(0,n_hex-1,n_hex,dtype=int)
-    xdata_r = np.linspace(0,len(ydata)-1,len(ydata),dtype=int)
+    xdata_r = np.linspace(0,len(ydata),len(ydata),dtype=int)
     
-    indices_a = np.array(np.where(yhat -1 >= thrsh*rms_avg_1))[0]
+    indices_a = np.array(np.where(yhat >= thrsh*rms_avg_1))[0]
     signo     = []
     extr      = []
     real_extr = []
@@ -228,13 +228,13 @@ def individual_fitting_plot(h,thrsh,polyn,rms_avg_1,array,ax):
     data = np.zeros([len(yhat),2])
     for i in range(len(yhat)):
         data[i,0] = xdata[i]
-        data[i,1] = yhat[i]-1
+        data[i,1] = yhat[i]
  
 
     ax.set_title('Hexagon '+str(h),fontsize = 20)
     ax.plot(data[:,0], data[:,1], lw=1, c='g', linestyle = 'none', marker = '.', label='smoothed hex data')
     ax.axhline(y = thrsh*rms_avg_1,color = 'k',linestyle='dashed', label = str(thrsh)+ 'times the rms') 
-    ax.plot(xdata_r, ydata-1, lw=0.01, c='gray', linestyle = 'none', marker = '.', label='raw hex data hex ')
+    ax.plot(xdata_r, ydata, lw=0.01, c='gray', linestyle = 'none', marker = '.', label='raw hex data hex ')
 
     if number_gauss == 1:
         errfunc1 = lambda p, x, y: (gaussian(x, *p) - y)
@@ -430,12 +430,12 @@ def linewidth_fit(indices,rms_avg_1,thrsh,polyn,CO_channel_data, chan_width):
         else:
             last = 2*center
     
-        ydata = ydata[first:last]+1
+        ydata = ydata[first:last]
         yhat = savgol_filter(ydata, 51, polyn)
         n_hex = len(yhat)
         xdata = np.linspace(0,n_hex-1,n_hex,dtype=int)
         
-        indices_a = np.array(np.where(yhat -1 >= thrsh*rms_avg_1))[0]
+        indices_a = np.array(np.where(yhat >= thrsh*rms_avg_1))[0]
         signo     = []
         extr      = []
         real_extr = []
@@ -460,7 +460,7 @@ def linewidth_fit(indices,rms_avg_1,thrsh,polyn,CO_channel_data, chan_width):
         data = np.zeros([len(yhat),2])
         for i in range(len(yhat)):
             data[i,0] = xdata[i]
-            data[i,1] = yhat[i]-1
+            data[i,1] = yhat[i]
         
         
         if number_gauss == 1:
